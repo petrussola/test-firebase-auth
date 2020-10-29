@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import SignOutButton from '../SignOut/index';
 import * as ROUTES from '../../Constants/routes';
 
 const index = () => {
@@ -21,6 +22,9 @@ const index = () => {
 				</li>
 				<li>
 					<Link to={ROUTES.ADMIN}>Admin</Link>
+				</li>
+				<li>
+					<SignOutButton />
 				</li>
 			</ul>
 		</div>
