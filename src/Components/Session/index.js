@@ -1,11 +1,4 @@
-import React from 'react';
+import AuthUserContext from './context';
+import withAuthentication from './withAuthentication';
 
-const index = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
-
-export default index;
+export { AuthUserContext, withAuthentication };
