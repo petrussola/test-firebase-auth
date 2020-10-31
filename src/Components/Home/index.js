@@ -1,11 +1,16 @@
 import React from 'react';
 
-const index = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+import { withAuthorization } from '../Session/index';
+
+const HomePage = () => {
+	return (
+		<div>
+			<h1>Home Page</h1>
+			<p>Accesible by every signed in user</p>
+		</div>
+	);
 };
 
-export default index;
+const condition = (authUser) => !!authUser;
+
+export default withAuthorization(condition)(HomePage);
