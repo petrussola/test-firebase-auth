@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import { SignUpLink } from '../SignUp/index';
+import { PasswordForgetLink } from '../PasswordForget/index';
 import { withFirebase } from '../Firebase/index';
 
 import * as ROUTES from '../../Constants/routes';
@@ -10,6 +11,7 @@ const SignInPage = () => {
 		<div>
 			<h1>SignIn</h1>
 			<SignInForm />
+			<PasswordForgetLink />
 			<SignUpLink />
 		</div>
 	);
@@ -33,7 +35,7 @@ const SignInFormBase = (props) => {
 				props.history.push(ROUTES.HOME);
 			})
 			.catch((error) => {
-				setUser({ error });
+				setUser({ ...user, password: '', error });
 			});
 		event.preventDefault();
 	};

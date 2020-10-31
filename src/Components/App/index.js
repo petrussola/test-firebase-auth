@@ -14,7 +14,7 @@ import {
 import * as ROUTES from '../../Constants/routes';
 import { withAuthentication } from '../Session/index';
 
-const App = (props) => {
+const App = () => {
 	return (
 		<Router>
 			<div>
