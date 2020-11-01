@@ -12,26 +12,30 @@ import {
 } from '../Exporter';
 
 import * as ROUTES from '../../Constants/routes';
-import { withAuthentication } from '../Session/index';
+import useAuth from '../Session/useAuth';
+import { AuthUserContext } from '../Session/index';
 
 const App = () => {
+	const authUser = useAuth();
 	return (
-		<Router>
-			<div>
-				<Navigation />
+		<AuthUserContext.Provider value={authUser}>
+			<Router>
+				<div>
+					<Navigation />
 
-				<hr />
+					<hr />
 
-				<Route exact path={ROUTES.LANDING} component={LandingPage} />
-				<Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-				<Route path={ROUTES.SIGN_IN} component={SignInPage} />
-				<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-				<Route path={ROUTES.HOME} component={HomePage} />
-				<Route path={ROUTES.ACCOUNT} component={AccountPage} />
-				<Route path={ROUTES.ADMIN} component={AdminPage} />
-			</div>
-		</Router>
+					<Route exact path={ROUTES.LANDING} component={LandingPage} />
+					<Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+					<Route path={ROUTES.SIGN_IN} component={SignInPage} />
+					<Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+					<Route path={ROUTES.HOME} component={HomePage} />
+					<Route path={ROUTES.ACCOUNT} component={AccountPage} />
+					<Route path={ROUTES.ADMIN} component={AdminPage} />
+				</div>
+			</Router>
+		</AuthUserContext.Provider>
 	);
 };
 
-export default withAuthentication(App);
+export default App;
