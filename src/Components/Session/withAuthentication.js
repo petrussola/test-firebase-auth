@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AuthUserContext } from '../Session/index';
-import { withFirebase } from '../Firebase/index';
+import { FirebaseContext } from '../Firebase/index';
 
 const withAuthentication = (Component) => {
 	function WithAuthentication(props) {
 		const [authUser, setAuthUser] = useState(null);
+		const firebase = useContext(FirebaseContext);
 
 		useEffect(() => {
-			props.firebase.auth.onAuthStateChanged((authUser) => {
+			firebase.auth.onAuthStateChanged((authUser) => {
 				authUser ? setAuthUser(authUser) : setAuthUser(null);
 			});
 		}, []);
@@ -17,7 +18,7 @@ const withAuthentication = (Component) => {
 			</AuthUserContext.Provider>
 		);
 	}
-	return withFirebase(WithAuthentication);
+	return WithAuthentication;
 };
 
 export default withAuthentication;

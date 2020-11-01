@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import * as ROUTES from '../../Constants/routes';
-import { withFirebase } from '../Firebase/index';
+import { FirebaseContext } from '../Firebase/index';
 
 const PasswordForgetPage = () => {
 	return (
@@ -18,13 +18,14 @@ const initialState = {
 	error: null,
 };
 
-const PasswordForgetFormBase = (props) => {
+const PasswordForgetForm = (props) => {
 	const [user, setUser] = useState(initialState);
+	const firebase = useContext(FirebaseContext);
 
 	const onSubmit = (event) => {
 		const { email } = user;
 
-		props.firebase
+		firebase
 			.doPasswordReset(email)
 			.then(() => {
 				setUser(initialState);
@@ -64,7 +65,5 @@ const PasswordForgetLink = () => (
 	</p>
 );
 export default PasswordForgetPage;
-
-const PasswordForgetForm = withFirebase(PasswordForgetFormBase);
 
 export { PasswordForgetForm, PasswordForgetLink };
